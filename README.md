@@ -1,4 +1,4 @@
-# Acuant iOS Mobile SDK v2
+# Acuant iOS Mobile SDK v10
 
 
 **Last updated – July 25, 2018**
