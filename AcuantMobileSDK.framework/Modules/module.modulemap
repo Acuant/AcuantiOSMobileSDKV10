@@ -1,0 +1,11 @@
+framework module AcuantMobileSDK {
+  umbrella header "AcuantMobileSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module AcuantMobileSDK.Swift {
+    header "AcuantMobileSDK-Swift.h"
+    requires objc
+}
