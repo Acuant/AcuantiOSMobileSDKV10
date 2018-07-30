@@ -221,7 +221,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         endPoints.idEndpoint = "https://services.assureid.net"
     
         credential.endpoints = endPoints
-        credential.username = "xxxxxxxx@acuantcorp.com"
+        credential.username = "xxxxxx@acuantcorp.com"
         credential.password = "xxxxxxxxxxxx"
         credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx"
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")

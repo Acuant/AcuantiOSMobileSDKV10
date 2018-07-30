@@ -1,8 +1,13 @@
-framework module AcuantMobileSDK {
-  umbrella header "AcuantMobileSDK.h"
+module AcuantMobileSDK{
+    module CroppingKit {
+        header "../Cropping/Cropping.h"
+        export *
+    }
 
-  export *
-  module * { export * }
+    module ImageMetricsKit {
+        header "../ImageMetrics/AcuantImageMetricsUtil.h"
+        export *
+    }
 }
 
 module AcuantMobileSDK.Swift {
