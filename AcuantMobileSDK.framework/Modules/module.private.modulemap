@@ -1,0 +1,11 @@
+module AcuantMobileSDK{
+    /*module CroppingKit {
+        header "../Cropping/Cropping.h"
+        export *
+    }
+
+    module ImageMetricsKit {
+        header "../ImageMetrics/AcuantImageMetricsUtil.h"
+        export *
+    }*/
+}
