@@ -6,6 +6,6 @@ framework module AcuantMobileSDK {
 }
 
 module AcuantMobileSDK.Swift {
-    //header "AcuantMobileSDK-Swift.h"
+    header "AcuantMobileSDK-Swift.h"
     requires objc
 }
