@@ -221,9 +221,9 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         endPoints.idEndpoint = "https://services.assureid.net"
     
         credential.endpoints = endPoints
-        credential.username = "xxxxxx@acuantcorp.com"
-        credential.password = "xxxxxxxxxxxx"
-        credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxxxxx"
+        credential.username = "username@acuantcorp.com"
+        credential.password = "password"
+        credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
     }
@@ -262,7 +262,6 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         let options = IdOptions()
         options.isHealthCard = false
         options.cardAttributes = attributes
-    
         vcUtil.hideActivityIndicator(uiView: self.view)
         if(Controller.isFacialAllowed() == false){
             vcUtil.showActivityIndicator(uiView: self.view, text: "Processing...")

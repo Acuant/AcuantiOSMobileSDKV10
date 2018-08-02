@@ -1,4 +1,4 @@
-# Acuant iOS Mobile SDK v10
+# Acuant iOS Mobile SDK v2
 
 
 **Last updated – July 25, 2018**
@@ -145,7 +145,7 @@ After an image is captured, it is sent to the cropping library for cropping.
     		public var error : Error? = nil
 		}
 		
-**Note**	A sharpness grade of 50 and above is defined as a sharp image. A glare grade of 50 or higher indicates that there is no glare present in the image.
+**Note**	A sharpness grade of 75 and above is defined as a sharp image. A glare grade of 75 or higher indicates that there is no glare present in the image.
 
 ## Using facial recognition ##
 

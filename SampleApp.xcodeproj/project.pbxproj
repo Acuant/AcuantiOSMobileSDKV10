@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		135767F920F3B77800EF24FB /* DocumentCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135767F820F3B77800EF24FB /* DocumentCameraController.swift */; };
 		13576B2B20F4048900EF24FB /* FaceLivelinessCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13576B2A20F4048900EF24FB /* FaceLivelinessCameraController.swift */; };
+		138E3D362110D9B40040847F /* AcuantMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; };
+		138E3D372110D9B40040847F /* AcuantMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		138EA90320F7BF9B002FC333 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EA90220F7BF9B002FC333 /* ResultViewController.swift */; };
 		138EA90520F7CFC9002FC333 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EA90420F7CFC9002FC333 /* Utils.swift */; };
-		13A2698E210FA84B00746EF3 /* AcuantMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; };
-		13A2698F210FA84B00746EF3 /* AcuantMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		13AC65DC20EE8F8F00F0D494 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC65DB20EE8F8F00F0D494 /* AppDelegate.swift */; };
 		13AC65DE20EE8F8F00F0D494 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC65DD20EE8F8F00F0D494 /* RootViewController.swift */; };
 		13AC65E120EE8F8F00F0D494 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13AC65DF20EE8F8F00F0D494 /* Main.storyboard */; };
@@ -24,13 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		13A26990210FA84B00746EF3 /* Embed Frameworks */ = {
+		138E3D382110D9B40040847F /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				13A2698F210FA84B00746EF3 /* AcuantMobileSDK.framework in Embed Frameworks */,
+				138E3D372110D9B40040847F /* AcuantMobileSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13A2698E210FA84B00746EF3 /* AcuantMobileSDK.framework in Frameworks */,
+				138E3D362110D9B40040847F /* AcuantMobileSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +122,7 @@
 				13AC65D420EE8F8F00F0D494 /* Sources */,
 				13AC65D520EE8F8F00F0D494 /* Frameworks */,
 				13AC65D620EE8F8F00F0D494 /* Resources */,
-				13A26990210FA84B00746EF3 /* Embed Frameworks */,
+				138E3D382110D9B40040847F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -336,6 +336,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BITCODE_GENERATION_MODE = marker;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -349,10 +350,12 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acuant.SampleApp;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cssn.SampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Debug;
 		};
@@ -360,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				BITCODE_GENERATION_MODE = bitcode;
 				CLANG_CXX_LANGUAGE_STANDARD = "c++0x";
 				CLANG_WARN_CXX0X_EXTENSIONS = NO;
 				CODE_SIGN_STYLE = Automatic;
@@ -373,10 +377,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.acuant.SampleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.cssn.SampleApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "$(ARCHS_STANDARD)";
 			};
 			name = Release;
 		};

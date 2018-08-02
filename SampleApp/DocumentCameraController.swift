@@ -14,7 +14,7 @@ import AcuantMobileSDK
 class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     private let context = CIContext()
     
-    //let vcUtil = ViewControllerUtils()
+    let vcUtil = ViewControllerUtils()
     
     var captureSession: DocumentCaptureSession!
     var lastDeviceOrientation : UIDeviceOrientation!
@@ -43,6 +43,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
         super.viewDidAppear(animated)
         AppDelegate.AppUtility.lockOrientation(.portrait)
         startCameraView()
+        vcUtil.showActivityIndicator(uiView: self.view, text: "Camera..")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -104,7 +105,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     
     @objc func screenTapped(_ sender:UITapGestureRecognizer){
         messageLayer.string = "HOLD STEADY"
-        captureSession.startCapturing(timeout: 2)
+        captureSession.startCapturing(timeout: 1)
     }
     
     func startCameraView() {
@@ -112,14 +113,14 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
             self.view.backgroundColor = UIColor.white
             self.captureSession = Controller.getDocumentCaptureSession(delegate: self,captureDevice: captureDevice)
             self.captureSession?.startRunning()
-            UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
                 self.view.alpha = 0.3
             }, completion: nil)
     }
     
     func didStartCaptureSession() {
-        //vcUtil.hideActivityIndicator(uiView: self.view)
-        UIView.animate(withDuration: 0.2, delay: 0.0, options: .curveEaseOut, animations: {
+        vcUtil.hideActivityIndicator(uiView: self.view)
+        UIView.animate(withDuration: 0.1, delay: 0.0, options: .curveEaseOut, animations: {
             self.view.alpha = 1.0
         }, completion: nil)
         self.videoPreviewLayer = AVCaptureVideoPreviewLayer(session: self.captureSession)
