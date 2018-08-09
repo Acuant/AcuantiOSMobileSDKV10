@@ -37,7 +37,7 @@ information regarding such designations and their registration status.
 <p>==================</p>
 
 
-# Introduction
+#Introduction
 
 <p>Acuant Web Services supports data extraction from driver’s licenses, state IDs, other government issued IDs, custom IDs, driver’s licenses, barcodes, and passports. It also supports document authentication and facial recognition to verify and authenticate the identity.</p>
 
@@ -46,7 +46,7 @@ information regarding such designations and their registration status.
 
 
 
-## Setup ##
+##Setup##
 
 **Prerequisites:**    iOS version 10.0 or higher.
 
@@ -56,7 +56,7 @@ information regarding such designations and their registration status.
 	
 	**Note** : For running the framework in a simulator please use the framework in the folder **Framework-For-Simulators**
 	    
-## Initializing the SDK ##
+##Initializing the SDK##
 
 1.	**Set the endpoints:**
 
@@ -87,7 +87,7 @@ information regarding such designations and their registration status.
         		}
     	}
 		
-## Capturing an image##
+##Capturing an image##
 
 Image capture is illustrated in the Sample App in DocumentCameraController.
 
@@ -103,7 +103,7 @@ Image capture is illustrated in the Sample App in DocumentCameraController.
     // When the capture session is set up the following call back will be called
     func didStartCaptureSession()
 		 
-## Cropping an image##
+##Cropping an image##
 
 After an image is captured, it is sent to the cropping library for cropping.
 
@@ -152,7 +152,7 @@ After an image is captured, it is sent to the cropping library for cropping.
 		
 **Note**	A sharpness grade of 50 and above is defined as a sharp image. A glare grade of 50 or higher indicates that there is no glare present in the image.
 
-## Using facial recognition ##
+##Using facial recognition##
 
 The following sample describes how to create a live face capture session.
 
@@ -185,7 +185,7 @@ The following sample describes how to create a live face capture session.
 		}
 		
 		
-## Processing the captured images##
+##Processing the captured images##
 
 Use a Web Service call to process the captured images. 
 
@@ -223,7 +223,7 @@ Use a Web Service call to process the captured images.
         	
         }
                    
-## Processing a Facial Match ##
+##Processing a Facial Match##
 
 1. **Set the facial data:**
 
