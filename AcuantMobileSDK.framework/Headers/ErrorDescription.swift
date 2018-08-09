@@ -23,4 +23,5 @@ struct ErrorDescriptions {
     static let ERROR_DESC_CouldNotUploadConnectBarcode = "Could not upload barcode to connect instance"
     static let ERROR_DESC_CouldNotGetConnectData = "Could not get connect image data"
     static let ERROR_DESC_CardWidthNotSet = "Card width not set"
+    static let ERROR_DESC_CouldNotGetHealthCardData = "Could not get health card data"
 }

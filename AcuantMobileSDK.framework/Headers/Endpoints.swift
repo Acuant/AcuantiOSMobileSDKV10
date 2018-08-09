@@ -9,6 +9,7 @@
 public class Endpoints{
     public var frmEndpoint : String?
     public var idEndpoint : String?
+    public var healthInsuranceEndpoint : String?
     public init(){
         
     }

@@ -25,4 +25,5 @@ struct ErrorCodes{
     static let ERROR_CouldNotGetConnectData = -16
     static let ERROR_CouldNotProcessFacialMatch = -17
     static let ERROR_CardWidthNotSet = -18
+    static let ERROR_CouldNotGetHealthCardData = -19;
 }

@@ -1,7 +1,7 @@
-# Acuant iOS Mobile SDK v2
+# Acuant iOS Mobile SDK v10
 
 
-**Last updated – July 25, 2018**
+**Last updated – August 9, 2018**
 
 Copyright <sup>©</sup> 2003-2018 Acuant Inc. All rights reserved.
 
@@ -53,6 +53,8 @@ information regarding such designations and their registration status.
 1.  **Add the Acuant iOS SDK embeded framework:**
 
 	![](document_images/embeded_framework.png)
+	
+	**Note** : For running the framework in a simulator please use the framework in the folder **Framework-For-Simulators**
 	    
 ## Initializing the SDK ##
 
@@ -61,6 +63,7 @@ information regarding such designations and their registration status.
 		let endPoints = Endpoints()
         endPoints.frmEndpoint = "https://frm.acuant.net/api/v1"
         endPoints.idEndpoint = "https://services.assureid.net"
+        endPoints.healthInsuranceEndpoint = "https://medicscan.acuant.net/api/v1"
 
 1. **Set the credentials:**
 
@@ -122,6 +125,8 @@ After an image is captured, it is sent to the cropping library for cropping.
         let croppingOptions = CroppingOptions()
         croppingOptions.cardAtributes = cardAttributes
         croppingOptions.imageMetricsRequired = true
+        // For Medical Card set isHealthCard to true
+        croppingOptions.isHealthCard = false
 	
 1. **Set the image to crop:**
 
@@ -193,6 +198,9 @@ Use a Web Service call to process the captured images.
         let options = IdOptions()
         options.isHealthCard = false
         options.cardAttributes = attributes
+        
+        // For medical card set isHealthCard to true
+        options.isHealthCard = false
         
    **Note**  By default, the processing mode is set to the mode enabled in the subscription. However, if a user only requires data capture, then they can limit the processing mode by setting the following option:
  		 

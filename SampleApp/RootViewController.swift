@@ -22,6 +22,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     public var isProcessingFacialMatch : Bool = false
     public var capturedFacialMatchResult : FacialMatchResult? = nil
     public var capturedFaceImageUrl : String? = nil
+    public var isHealthCard : Bool = false
     var side = 0 // 0 : Front  1: Back
     
     @IBOutlet var medicalCardButton: UIButton!
@@ -29,6 +30,12 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     
     @IBAction func idPassportTapped(_ sender: UIButton) {
         resetData()
+        showDocumentCaptureCamera()
+    }
+    
+    @IBAction func healthCardTapped(_ sender: UIButton) {
+        resetData()
+        isHealthCard = true
         showDocumentCaptureCamera()
     }
     
@@ -40,6 +47,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         side = 0
         isProcessing = false
         isLiveFace = false
+        isHealthCard = false
         isProcessingFacialMatch = false
         capturedIDType = CardType.ID1
         capturedFrontImage = nil
@@ -65,6 +73,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         let croppingOptions = CroppingOptions()
         croppingOptions.cardAtributes = cardAttributes
         croppingOptions.imageMetricsRequired = true
+        croppingOptions.isHealthCard = isHealthCard
         
         let croppedImage = Controller.crop(options: croppingOptions, data: croppingData)
         return croppedImage
@@ -108,6 +117,22 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
             }
             
         }
+    }
+    
+    func showHealthCardResult(data:Array<String>?,front:UIImage?,back:UIImage?){
+            DispatchQueue.main.async {
+                self.vcUtil.hideActivityIndicator(uiView: self.view)
+                let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+                let resultViewController = storyBoard.instantiateViewController(withIdentifier: "ResultViewController") as! ResultViewController
+                
+                
+                resultViewController.data = data
+                
+                resultViewController.front = front
+                resultViewController.back = back
+                AppDelegate.navigationController?.pushViewController(resultViewController, animated: true)
+            }
+        
     }
     public func liveFaceCaptured(image:UIImage){
         capturedLiveFace = image
@@ -200,10 +225,14 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
             }else{
                 capturedFrontImage = image
             }
-            if(Controller.isFacialAllowed()){
-                showFacialCaptureInterface()
+            if(isHealthCard){
+                processHealthCard()
+            }else{
+                if(Controller.isFacialAllowed()){
+                    showFacialCaptureInterface()
+                }
+                processId(cardType: capturedIDType!)
             }
-            processId(cardType: capturedIDType!)
         }
         
     }
@@ -219,10 +248,11 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         let endPoints = Endpoints()
         endPoints.frmEndpoint = "https://frm.acuant.net/api/v1"
         endPoints.idEndpoint = "https://services.assureid.net"
-    
+        endPoints.healthInsuranceEndpoint = "https://medicscan.acuant.net/api/v1"
+        
         credential.endpoints = endPoints
-        credential.username = "username@acuantcorp.com"
-        credential.password = "password"
+        credential.username = "xxxxxx@acuantcorp.com"
+        credential.password = "xxxxxxxx"
         credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
@@ -230,23 +260,31 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
     }
     
     func initializationFinished(error: AcuantMobileSDK.Error?) {
         vcUtil.hideActivityIndicator(uiView: self.view)
         if(error == nil){
-            if(!Controller.isIdAllowed()){
-                idPassportButton.isHidden = true
-            }
-            if(!Controller.isHealthCardAllowed()){
-                medicalCardButton.isHidden = true
-            }
+            medicalCardButton.isHidden = false
         }else{
             if let msg = error?.errorDescription {
                 CustomAlerts.displayError(message: "\(error!.errorCode!) : " + msg)
             }
         }
+    }
+    
+    func processHealthCard(){
+        isProcessing = true
+        let idData = IdData ()
+        idData.frontImage = capturedFrontImage
+        idData.backImage = capturedBackImage
+        idData.barcodeString = capturedBarcodeString
+        
+        let options = IdOptions()
+        options.isHealthCard = true
+        vcUtil.showActivityIndicator(uiView: self.view, text: "Processing...")
+        Controller.processId(imageData: idData, options: options, delegate: self)
     }
     
     func processId(cardType : CardType){
@@ -271,54 +309,73 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     
     func imageProcessingFinished(result: ImageProcessingResult?) {
         if(result?.error == nil){
-            let idResult = result as! IDResult
-            if(idResult.fields == nil){
-                CustomAlerts.displayError(message: "Could not extract data")
-                isProcessing = false
-                return
-            }else if(idResult.fields!.dataFieldReferences == nil){
-                CustomAlerts.displayError(message: "Could not extract data")
-                isProcessing = false
-                return
-            }else if(idResult.fields!.dataFieldReferences!.count==0){
-                CustomAlerts.displayError(message: "Could not extract data")
-                isProcessing = false
-                return
-            }
-            let fields : Array<DataFieldReference>! = idResult.fields!.dataFieldReferences!
-            
-            var frontImageUri: String? = nil
-            var backImageUri: String? = nil
-            var signImageUri: String? = nil
-            var faceImageUri: String? = nil
-    
-            var dataArray = Array<String>()
-            
-            dataArray.append("Authentication Result : \(Utils.getAuthResultString(authResult: idResult.result!))")
-            //var images = [String:UIImage]()
-            for field in fields{
-                if(field.type == "string"){
-                    dataArray.append("\(field.key!) : \(field.value!)")
-                }else if(field.type == "datetime"){
-                    dataArray.append("\(field.key!) : \(Utils.dateFieldToDateString(dateStr: field.value!)!)")
-                }else if (field.key == "Photo" && field.type == "uri") {
-                    faceImageUri = field.value
-                    capturedFaceImageUrl = faceImageUri
-                } else if (field.key == "Signature" && field.type == "uri") {
-                    signImageUri = field.value
+            if(isHealthCard){
+                let healthCardResult = result as! HealthInsuranceCardResult
+                let mirrored_object = Mirror(reflecting: healthCardResult)
+                var dataArray = Array<String>()
+                for (index, attr) in mirrored_object.children.enumerated() {
+                    if let property_name = attr.label as String! {
+                        if let property_value = attr.value as? String {
+                            if(property_value != ""){
+                                dataArray.append("\(property_name) : \(property_value)")
+                            }
+                        }
+                    }
                 }
-            }
-            
-            for image in (idResult.images?.images!)! {
-                if (image.side == 0) {
-                    frontImageUri = image.uri
-                } else if (image.side == 1) {
-                    backImageUri = image.uri
+                
+                showHealthCardResult(data: dataArray, front: healthCardResult.frontImage, back: healthCardResult.backImage)
+                Controller.deleteInstance(instanceId: healthCardResult.instanceID!,type:DeleteType.MedicalCard, delegate: self)
+                
+            }else{
+                let idResult = result as! IDResult
+                if(idResult.fields == nil){
+                    CustomAlerts.displayError(message: "Could not extract data")
+                    isProcessing = false
+                    return
+                }else if(idResult.fields!.dataFieldReferences == nil){
+                    CustomAlerts.displayError(message: "Could not extract data")
+                    isProcessing = false
+                    return
+                }else if(idResult.fields!.dataFieldReferences!.count==0){
+                    CustomAlerts.displayError(message: "Could not extract data")
+                    isProcessing = false
+                    return
                 }
+                let fields : Array<DataFieldReference>! = idResult.fields!.dataFieldReferences!
+                
+                var frontImageUri: String? = nil
+                var backImageUri: String? = nil
+                var signImageUri: String? = nil
+                var faceImageUri: String? = nil
+                
+                var dataArray = Array<String>()
+                
+                dataArray.append("Authentication Result : \(Utils.getAuthResultString(authResult: idResult.result!))")
+                //var images = [String:UIImage]()
+                for field in fields{
+                    if(field.type == "string"){
+                        dataArray.append("\(field.key!) : \(field.value!)")
+                    }else if(field.type == "datetime"){
+                        dataArray.append("\(field.key!) : \(Utils.dateFieldToDateString(dateStr: field.value!)!)")
+                    }else if (field.key == "Photo" && field.type == "uri") {
+                        faceImageUri = field.value
+                        capturedFaceImageUrl = faceImageUri
+                    } else if (field.key == "Signature" && field.type == "uri") {
+                        signImageUri = field.value
+                    }
+                }
+                
+                for image in (idResult.images?.images!)! {
+                    if (image.side == 0) {
+                        frontImageUri = image.uri
+                    } else if (image.side == 1) {
+                        backImageUri = image.uri
+                    }
+                }
+                isProcessing = false
+                showResult(data: dataArray, front: frontImageUri, back: backImageUri, sign: signImageUri, face: faceImageUri)
+                //Controller.deleteInstance(instanceId: idResult.instanceID!,type:DeleteType.ID, delegate: self)
             }
-            isProcessing = false
-            showResult(data: dataArray, front: frontImageUri, back: backImageUri, sign: signImageUri, face: faceImageUri)
-            //Controller.deleteInstance(instanceId: idResult.instanceID!, delegate: self)
         }else{
             if let msg = result?.error?.errorDescription {
                 CustomAlerts.displayError(message: msg)
@@ -339,16 +396,16 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     
     
     func instanceDeleted(success: Bool) {
-        
+        print()
     }
     
     
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    
 }
 

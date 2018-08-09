@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		135767F920F3B77800EF24FB /* DocumentCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 135767F820F3B77800EF24FB /* DocumentCameraController.swift */; };
 		13576B2B20F4048900EF24FB /* FaceLivelinessCameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13576B2A20F4048900EF24FB /* FaceLivelinessCameraController.swift */; };
-		138E3D362110D9B40040847F /* AcuantMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; };
-		138E3D372110D9B40040847F /* AcuantMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		13584B76211CB7E3008B0BA2 /* AcuantMobileSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13584B74211CB7CF008B0BA2 /* AcuantMobileSDK.framework */; };
+		13584B77211CB7E3008B0BA2 /* AcuantMobileSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 13584B74211CB7CF008B0BA2 /* AcuantMobileSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		138EA90320F7BF9B002FC333 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EA90220F7BF9B002FC333 /* ResultViewController.swift */; };
 		138EA90520F7CFC9002FC333 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138EA90420F7CFC9002FC333 /* Utils.swift */; };
 		13AC65DC20EE8F8F00F0D494 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13AC65DB20EE8F8F00F0D494 /* AppDelegate.swift */; };
@@ -30,7 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				138E3D372110D9B40040847F /* AcuantMobileSDK.framework in Embed Frameworks */,
+				13584B77211CB7E3008B0BA2 /* AcuantMobileSDK.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,7 +40,7 @@
 /* Begin PBXFileReference section */
 		135767F820F3B77800EF24FB /* DocumentCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentCameraController.swift; sourceTree = "<group>"; };
 		13576B2A20F4048900EF24FB /* FaceLivelinessCameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceLivelinessCameraController.swift; sourceTree = "<group>"; };
-		1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AcuantMobileSDK.framework; sourceTree = "<group>"; };
+		13584B74211CB7CF008B0BA2 /* AcuantMobileSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AcuantMobileSDK.framework; sourceTree = "<group>"; };
 		138EA90220F7BF9B002FC333 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		138EA90420F7CFC9002FC333 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		13AC65D820EE8F8F00F0D494 /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -60,7 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				138E3D362110D9B40040847F /* AcuantMobileSDK.framework in Frameworks */,
+				13584B76211CB7E3008B0BA2 /* AcuantMobileSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -107,7 +107,7 @@
 		13AC662620EE954900F0D494 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1370FB7C20F80CFC002E9E39 /* AcuantMobileSDK.framework */,
+				13584B74211CB7CF008B0BA2 /* AcuantMobileSDK.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

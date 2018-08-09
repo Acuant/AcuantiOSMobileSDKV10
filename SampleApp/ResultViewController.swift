@@ -23,6 +23,9 @@ class ResultViewController: UIViewController,UITableViewDataSource,UITableViewDe
     public var faceImageUrl : String? = nil
     public var signImageUrl : String? = nil
     
+    public var front : UIImage? = nil
+    public var back : UIImage? = nil
+    
     public var username : String? = nil
     public var password : String? = nil
     
@@ -48,6 +51,14 @@ class ResultViewController: UIViewController,UITableViewDataSource,UITableViewDe
         
         if(signImageUrl != nil){
             signImage.downloadedFrom(urlStr: signImageUrl!, username: username!, password: password!)
+        }
+        
+        if(front != nil){
+            frontImage.image = front
+        }
+        
+        if(back != nil){
+            backImage.image = back
         }
         
     }

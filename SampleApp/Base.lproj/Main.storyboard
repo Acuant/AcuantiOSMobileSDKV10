@@ -31,6 +31,9 @@
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9sA-2d-9CD">
                                 <rect key="frame" x="0.0" y="384" width="375" height="30"/>
                                 <state key="normal" title="Health Insurance Card"/>
+                                <connections>
+                                    <action selector="healthCardTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LL2-UN-N3Z"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
