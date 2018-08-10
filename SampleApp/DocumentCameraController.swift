@@ -14,6 +14,8 @@ import AcuantMobileSDK
 class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     private let context = CIContext()
     
+    var captureWaitTime = 2
+    
     let vcUtil = ViewControllerUtils()
     
     var captureSession: DocumentCaptureSession!
@@ -105,7 +107,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     
     @objc func screenTapped(_ sender:UITapGestureRecognizer){
         messageLayer.string = "HOLD STEADY"
-        captureSession.startCapturing(timeout: 1)
+        captureSession.startCapturing(timeout: captureWaitTime)
     }
     
     func startCameraView() {

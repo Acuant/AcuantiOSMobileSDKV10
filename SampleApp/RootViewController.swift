@@ -24,6 +24,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     public var capturedFaceImageUrl : String? = nil
     public var isHealthCard : Bool = false
     var side = 0 // 0 : Front  1: Back
+    var captureWaitTime = 0
     
     @IBOutlet var medicalCardButton: UIButton!
     @IBOutlet var idPassportButton: UIButton!
@@ -40,11 +41,14 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
     }
     
     func showDocumentCaptureCamera(){
-        AppDelegate.navigationController?.pushViewController(DocumentCameraController(), animated: false)
+        let documentCameraController = DocumentCameraController()
+        documentCameraController.captureWaitTime = captureWaitTime
+        AppDelegate.navigationController?.pushViewController(documentCameraController, animated: false)
     }
     
     func resetData(){
         side = 0
+        captureWaitTime = 0
         isProcessing = false
         isLiveFace = false
         isHealthCard = false
@@ -216,6 +220,11 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
             alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
             { action -> Void in
                 self.side = 1
+                if(self.isHealthCard){
+                    self.captureWaitTime = 0
+                }else{
+                    self.captureWaitTime = 1
+                }
                 self.showDocumentCaptureCamera()
             })
             self.present(alert, animated: true, completion: nil)
@@ -251,8 +260,8 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         endPoints.healthInsuranceEndpoint = "https://medicscan.acuant.net/api/v1"
         
         credential.endpoints = endPoints
-        credential.username = "xxxxxx@acuantcorp.com"
-        credential.password = "xxxxxxxx"
+        credential.username = "xxxxxxx@xxxxxx.com"
+        credential.password = "xxxxxxxxxx"
         credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
