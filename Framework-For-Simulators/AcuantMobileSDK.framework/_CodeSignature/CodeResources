@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/AcuantMobileSDK-Swift.h</key>
 		<data>
-		RZKLFNTLKqnEVlIzITdM5DmReSU=
+		QWhQGEPcXpLs8t7cXktGxsA7tE8=
 		</data>
 		<key>Headers/AcuantMobileSDK.h</key>
 		<data>
@@ -74,23 +74,23 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		WyCYQDRXr3wploJtIQhujhod7EE=
+		DkIjPoMDz8pgwoy3VYa5j8eHVkM=
 		</data>
 		<key>Modules/AcuantMobileSDK.swiftmodule/i386.swiftdoc</key>
 		<data>
-		v5f8gAH5DquRN7JDG7a1471Clw8=
+		f60CafeseOGaUfhtaHohzXF+rc4=
 		</data>
 		<key>Modules/AcuantMobileSDK.swiftmodule/i386.swiftmodule</key>
 		<data>
-		klUapRWqoZS3xj5/BZXl131VxRo=
+		uclmkMoEUmNa09+ToTKNVgfPOCQ=
 		</data>
 		<key>Modules/AcuantMobileSDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
-		JXahdPI1UxrtJiPGTlv149PH8O0=
+		aKh6b5djEWkHkgPkixNyL2lBeMw=
 		</data>
 		<key>Modules/AcuantMobileSDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		P+ywmeRn3Ty1x1rz9TAzkZZ8ylM=
+		uq53E4ohQpby1Le+gPCzscNlr5g=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -103,11 +103,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			RZKLFNTLKqnEVlIzITdM5DmReSU=
+			QWhQGEPcXpLs8t7cXktGxsA7tE8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Uyuc5YrK5VXBMqJKgg8UOa5TbGSXxg8rBAlIJbk+oQQ=
+			qfLuQDbLrr9jBwg6D0vjphXM4vF3JmG+TNDsb41t1vM=
 			</data>
 		</dict>
 		<key>Headers/AcuantMobileSDK.h</key>
@@ -290,44 +290,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			v5f8gAH5DquRN7JDG7a1471Clw8=
+			f60CafeseOGaUfhtaHohzXF+rc4=
 			</data>
 			<key>hash2</key>
 			<data>
-			hiKsSIKBi7gna4AhvPd6N/8MWo0KcdmdsJh987LOk6s=
+			A2SbQQboLIp2R8PzZRRoSWNAHncQ62ns4QJgkgmCBWY=
 			</data>
 		</dict>
 		<key>Modules/AcuantMobileSDK.swiftmodule/i386.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			klUapRWqoZS3xj5/BZXl131VxRo=
+			uclmkMoEUmNa09+ToTKNVgfPOCQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			J7nwF+XoB2wsyysy38IEUXUEIIoim3z8/TdTX4su+8A=
+			80zAzI939qIQA4jUiseXDV236yqwKT7pPvpDFxl+5Tk=
 			</data>
 		</dict>
 		<key>Modules/AcuantMobileSDK.swiftmodule/x86_64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			JXahdPI1UxrtJiPGTlv149PH8O0=
+			aKh6b5djEWkHkgPkixNyL2lBeMw=
 			</data>
 			<key>hash2</key>
 			<data>
-			tQv43CVLQ3M3+OvYvvIq1B6l54FmUd52zUVmhzncDjs=
+			E4rzUwK4PMxUIV0ltPywpGZAl/1LM0L7iTw5wlrWZ24=
 			</data>
 		</dict>
 		<key>Modules/AcuantMobileSDK.swiftmodule/x86_64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			P+ywmeRn3Ty1x1rz9TAzkZZ8ylM=
+			uq53E4ohQpby1Le+gPCzscNlr5g=
 			</data>
 			<key>hash2</key>
 			<data>
-			wOK968JsHl+Y8QEn69z5tz/l2MejWMpzFQYUs6xyfuc=
+			oLUOkc7dFCjLn2FyXcQbZ2a9U1ABB6Juu/yBQSIHdwQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

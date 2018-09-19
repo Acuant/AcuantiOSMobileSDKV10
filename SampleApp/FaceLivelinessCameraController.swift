@@ -158,7 +158,7 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
             var vSpace = 0.75
             var rectWidth = overlayRect.size.width
             var rectHeight = overlayRect.size.height
-            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation)){
+            if(UIDevice.current.orientation.isLandscape){
                 let tmp = rectWidth
                 rectWidth = rectHeight
                 rectHeight = tmp
@@ -177,7 +177,7 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
             var vSpace = 0.75
             var rectWidth = overlayRect.size.width
             var rectHeight = overlayRect.size.height
-            if(UIDeviceOrientationIsLandscape(UIDevice.current.orientation)){
+            if(UIDevice.current.orientation.isLandscape){
                 let tmp = rectWidth
                 rectWidth = rectHeight
                 rectHeight = tmp
@@ -211,7 +211,7 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
         overlayPath.usesEvenOddFillRule=true
         let fillLayer = CAShapeLayer()
         fillLayer.path = overlayPath.cgPath;
-        fillLayer.fillRule = kCAFillRuleEvenOdd;
+        fillLayer.fillRule = CAShapeLayerFillRule.evenOdd;
         fillLayer.fillColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor
         overlayView?.layer.addSublayer(fillLayer)
         videoPreviewLayer.addSublayer((overlayView?.layer)!)
@@ -219,9 +219,9 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
     
     func displayBlinkMessage(){
         let message = NSMutableAttributedString.init(string: "Blink when green oval appears")
-        message.addAttribute(kCTForegroundColorAttributeName as NSAttributedStringKey,value: UIColor.white, range: NSRange.init(location: 0, length: message.length))
-        message.addAttribute(kCTForegroundColorAttributeName as NSAttributedStringKey,value: UIColor.green, range: NSRange.init(location: 11, length: 10))
-        message.addAttribute(kCTFontAttributeName as NSAttributedStringKey,value:UIFont.boldSystemFont(ofSize: 13), range: NSRange.init(location: 0, length: message.length))
+        message.addAttribute(kCTForegroundColorAttributeName as NSAttributedString.Key,value: UIColor.white, range: NSRange.init(location: 0, length: message.length))
+        message.addAttribute(kCTForegroundColorAttributeName as NSAttributedString.Key,value: UIColor.green, range: NSRange.init(location: 11, length: 10))
+        message.addAttribute(kCTFontAttributeName as NSAttributedString.Key,value:UIFont.boldSystemFont(ofSize: 13), range: NSRange.init(location: 0, length: message.length))
         
         
         let blinkLabel = CATextLayer()
@@ -229,7 +229,7 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
         blinkLabel.string = message
         blinkLabel.fontSize = 15
         blinkLabel.contentsScale = UIScreen.main.scale
-        blinkLabel.alignmentMode = kCAAlignmentCenter
+        blinkLabel.alignmentMode = CATextLayerAlignmentMode.center
         blinkLabel.foregroundColor = UIColor.white.cgColor
         videoPreviewLayer.addSublayer(blinkLabel)
     }

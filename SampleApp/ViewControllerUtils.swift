@@ -37,7 +37,7 @@ class ViewControllerUtils {
         
         activityIndicator.frame = CGRect.init(x: 0, y: 0, width: 40, height: 40)
         
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         activityIndicator.center = CGPoint.init(x: loadingView.frame.size.width / 2, y: loadingView.frame.size.height / 2)
         
         if(text != ""){

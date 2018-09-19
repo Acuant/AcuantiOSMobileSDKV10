@@ -216,8 +216,8 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         if(side==0 && capturedIDType == CardType.ID1){
             capturedFrontImage = image
             
-            let alert = UIAlertController(title: "Back Side?", message: "Scan the back side of the document", preferredStyle:UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default)
+            let alert = UIAlertController(title: "Back Side?", message: "Scan the back side of the document", preferredStyle:UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default)
             { action -> Void in
                 self.side = 1
                 if(self.isHealthCard){
@@ -263,6 +263,9 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         credential.username = "xxxxxxx@xxxxxx.com"
         credential.password = "xxxxxxxxxx"
         credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+        
+        
+        
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
     }

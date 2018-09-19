@@ -35,7 +35,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
         self.view.addGestureRecognizer(gestureRecognizer)
         
         UIDevice.current.beginGeneratingDeviceOrientationNotifications()
-        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceDidRotate(notification:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.deviceDidRotate(notification:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         
         self.lastDeviceOrientation = UIDevice.current.orientation
     }
@@ -146,7 +146,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
         self.messageLayer.backgroundColor = UIColor.red.cgColor
         self.messageLayer.fontSize = 35
         self.messageLayer.string = "ALIGN AND TAP"
-        self.messageLayer.alignmentMode = kCAAlignmentCenter
+        self.messageLayer.alignmentMode = CATextLayerAlignmentMode.center
         self.messageLayer.foregroundColor = UIColor.white.cgColor
         self.messageLayer.transform = CATransform3DMakeAffineTransform(CGAffineTransform(rotationAngle: CGFloat(Double.pi/2)));
         self.messageLayer.frame = CGRect(x: self.view.center.x-25, y: self.view.center.y-150, width: 50, height: 300)
@@ -194,7 +194,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     {
         let currentOrientation = UIDevice.current.orientation
         if(self.lastDeviceOrientation != currentOrientation){
-            if(UIDeviceOrientationIsLandscape(currentOrientation)){
+            if(currentOrientation.isLandscape){
                 if(currentOrientation == UIDeviceOrientation.landscapeLeft){
                     rotateLayer(angle: -270, layer: messageLayer)
                 }else if(currentOrientation == UIDeviceOrientation.landscapeRight){
