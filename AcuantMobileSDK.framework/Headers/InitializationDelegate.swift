@@ -7,5 +7,5 @@
 //
 
 public protocol InitializationDelegate {
-    func initializationFinished(error: Error?);
+    func initializationFinished(error: AcuantError?);
 }

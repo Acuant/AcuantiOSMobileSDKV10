@@ -6,7 +6,7 @@
 //  Copyright © 2018 com.acuant. All rights reserved.
 //
 
-public class Error{
+public class AcuantError{
     public var errorCode : Int?
     public var errorDescription : String?
 }

@@ -78,8 +78,10 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         croppingOptions.cardAtributes = cardAttributes
         croppingOptions.imageMetricsRequired = true
         croppingOptions.isHealthCard = isHealthCard
-        
+        let start = CFAbsoluteTimeGetCurrent()
         let croppedImage = Controller.crop(options: croppingOptions, data: croppingData)
+        let elapsed = CFAbsoluteTimeGetCurrent() - start
+        print("Crop Time:\(elapsed)")
         return croppedImage
     }
     
@@ -264,8 +266,6 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         credential.password = "xxxxxxxxxx"
         credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
         
-        
-        
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
     }
@@ -275,7 +275,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         
     }
     
-    func initializationFinished(error: AcuantMobileSDK.Error?) {
+    func initializationFinished(error: AcuantMobileSDK.AcuantError?) {
         vcUtil.hideActivityIndicator(uiView: self.view)
         if(error == nil){
             medicalCardButton.isHidden = false
@@ -291,6 +291,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         let idData = IdData ()
         idData.frontImage = capturedFrontImage
         idData.backImage = capturedBackImage
+        
         idData.barcodeString = capturedBarcodeString
         
         let options = IdOptions()
