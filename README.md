@@ -86,7 +86,7 @@ information regarding such designations and their registration status.
         		}
     	}
 		
-## Capturing an image##
+## Capturing an image ##
 
 Image capture is illustrated in the Sample App in DocumentCameraController.
 
@@ -102,7 +102,7 @@ Image capture is illustrated in the Sample App in DocumentCameraController.
     // When the capture session is set up the following call back will be called
     func didStartCaptureSession()
 		 
-## Cropping an image##
+## Cropping an image ##
 
 After an image is captured, it is sent to the cropping library for cropping.
 
@@ -184,7 +184,7 @@ The following sample describes how to create a live face capture session.
 		}
 		
 		
-## Processing the captured images##
+## Processing the captured images ##
 
 Use a Web Service call to process the captured images. 
 
@@ -243,9 +243,9 @@ Use a Web Service call to process the captured images.
         	}
     	}
     	
-##Frequently Asked Questions##
+## Frequently Asked Questions ##
 
-####While publishing the app in the Apple App store we are getting an "Unsupported Architecture" error?####
+#### While publishing the app in the Apple App store we are getting an "Unsupported Architecture" error? ####
 
 All frameworks are “fat” (multi-architecture) binaries that contain *slices* for **armv7**, **arm64**, **i386**, and **x86(64)**  CPU architectures. ARM slices are used by physical iOS devices, while i386 and x86(64) are used by the simulator. 
 
