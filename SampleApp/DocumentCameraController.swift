@@ -194,7 +194,7 @@ class DocumentCameraController : UIViewController,DocumentCaptureDelegate{
     {
         let currentOrientation = UIDevice.current.orientation
         if(self.lastDeviceOrientation != currentOrientation){
-            if(currentOrientation.isLandscape){
+            if(UIDevice.current.orientation.isLandscape){
                 if(currentOrientation == UIDeviceOrientation.landscapeLeft){
                     rotateLayer(angle: -270, layer: messageLayer)
                 }else if(currentOrientation == UIDeviceOrientation.landscapeRight){

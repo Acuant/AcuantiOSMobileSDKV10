@@ -78,10 +78,8 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         croppingOptions.cardAtributes = cardAttributes
         croppingOptions.imageMetricsRequired = true
         croppingOptions.isHealthCard = isHealthCard
-        let start = CFAbsoluteTimeGetCurrent()
+        
         let croppedImage = Controller.crop(options: croppingOptions, data: croppingData)
-        let elapsed = CFAbsoluteTimeGetCurrent() - start
-        print("Crop Time:\(elapsed)")
         return croppedImage
     }
     
@@ -262,10 +260,9 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         endPoints.healthInsuranceEndpoint = "https://medicscan.acuant.net/api/v1"
         
         credential.endpoints = endPoints
-        credential.username = "xxxxxxx@xxxxxx.com"
-        credential.password = "xxxxxxxxxx"
-        credential.subscription = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-        
+        credential.username = "xxxxxx@acuantcorp.com"
+        credential.password = "xxxxxxxxx"
+        credential.subscription = "xxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxx"
         vcUtil.showActivityIndicator(uiView: self.view, text: "Initializing...")
         Controller.initialize(credential: credential, delegate:self)
     }
@@ -275,7 +272,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         
     }
     
-    func initializationFinished(error: AcuantMobileSDK.AcuantError?) {
+    func initializationFinished(error: AcuantError?) {
         vcUtil.hideActivityIndicator(uiView: self.view)
         if(error == nil){
             medicalCardButton.isHidden = false
@@ -291,7 +288,6 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
         let idData = IdData ()
         idData.frontImage = capturedFrontImage
         idData.backImage = capturedBackImage
-        
         idData.barcodeString = capturedBarcodeString
         
         let options = IdOptions()
@@ -327,7 +323,7 @@ class RootViewController: UIViewController , InitializationDelegate , IDProcessi
                 let mirrored_object = Mirror(reflecting: healthCardResult)
                 var dataArray = Array<String>()
                 for (index, attr) in mirrored_object.children.enumerated() {
-                    if let property_name = attr.label as String! {
+                    if let property_name = attr.label as String? {
                         if let property_value = attr.value as? String {
                             if(property_value != ""){
                                 dataArray.append("\(property_name) : \(property_value)")

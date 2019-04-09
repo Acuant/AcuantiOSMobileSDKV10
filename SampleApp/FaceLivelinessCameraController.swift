@@ -108,6 +108,9 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
             
             let translatedFaceRect = self.calculateFaceRect(faceBounds: (liveFaceDetails?.faceRect)!, clearAperture:(liveFaceDetails?.cleanAperture)!)
             
+            let topPadding = view.safeAreaInsets.top
+            let bottomPadding = view.safeAreaInsets.bottom
+            
             
             var width = (translatedFaceRect.width)
             width = 1.1*width
@@ -115,7 +118,7 @@ class FaceLivelinessCameraController : UIViewController,LiveFaceCaptureDelegate{
             var height = (translatedFaceRect.height)
             height = 1.3*height
             
-            let x = (translatedFaceRect.origin.x) + ((translatedFaceRect.width)-width)
+            let x = (translatedFaceRect.origin.x) + ((translatedFaceRect.width)-width) + (topPadding + bottomPadding)/2
             let y = (translatedFaceRect.origin.y) + ((translatedFaceRect.height)-height)
             let faceRect =  CGRect.init(x: x, y: y, width: width, height:height)
             self.faceOval?.removeFromSuperlayer()
