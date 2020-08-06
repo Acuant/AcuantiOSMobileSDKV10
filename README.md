@@ -1,6 +1,5 @@
 # Acuant iOS Mobile SDK v10 [DEPRECATED]
 
-
 **Last updated – April 9, 2019**
 
 Copyright <sup>©</sup> 2003-2018 Acuant Inc. All rights reserved.
@@ -36,6 +35,9 @@ information regarding such designations and their registration status.
 <p>Los Angeles, CA 90045</p>
 <p>==================</p>
 
+## License
+
+This software is subject to Acuant's end user license agreement (EULA), which can be found [here](EULA.pdf).
 
 # Introduction
 
